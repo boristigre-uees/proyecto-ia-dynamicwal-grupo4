@@ -1,0 +1,11 @@
+pandas
+numpy
+xgboost
+fbprophet
+torch
+beautifulsoup4
+requests
+streamlit
+fastapi
+uvicorn
+statsmodels
