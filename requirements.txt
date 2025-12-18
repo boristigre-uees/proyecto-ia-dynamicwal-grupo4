@@ -1,12 +1,7 @@
+streamlit
 pandas
 numpy
-xgboost
-fbprophet
-torch
-beautifulsoup4
-requests
-streamlit
-fastapi
-uvicorn
+matplotlib
+scikit-learn
+plotly
 statsmodels
-prophet==1.1.5
