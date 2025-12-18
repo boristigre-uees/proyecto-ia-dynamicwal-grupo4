@@ -15,47 +15,47 @@ from src.models.qlearning_pricing import QLearningPricer
 st.set_page_config(page_title="DynamicWal", layout="wide")
 st.title("🛒 DynamicWal - Sistema de Optimización de Precios Dinámico")
 
-# Cargar datos
-@st.cache_data
-def load_data():
-    data_path = os.path.join('..', 'data', 'processed', 'walmart_sales_processed.csv')
-    df = pd.read_csv(data_path)
-    df['Date'] = pd.to_datetime(df['Date'])
-    df['revenue'] = df['quantity_sold'] * df['unit_price']
-    return df
+# DATOS DE EJEMPLO (sin CSV grande)
+st.write("**Datos de ejemplo generados para demostración**")
 
-df = load_data()
+dates = pd.date_range(start='2024-01-01', periods=180, freq='D')
+np.random.seed(42)
+revenue = 10000 + np.cumsum(np.random.normal(100, 500, len(dates))) + np.sin(np.arange(len(dates)) * 2 * np.pi / 7) * 2000
+daily = pd.DataFrame({'Date': dates, 'revenue': revenue})
+
+categories = ['Electronics', 'Appliances', 'Clothing']
+df = pd.DataFrame({
+    'Date': np.random.choice(dates, 1000),
+    'category': np.random.choice(categories, 1000),
+    'quantity_sold': np.random.randint(1, 10, 1000),
+    'unit_price': np.random.uniform(100, 2000, 1000),
+})
+df['revenue'] = df['quantity_sold'] * df['unit_price']
 
 st.sidebar.header("Controles")
 category = st.sidebar.selectbox("Categoría", df['category'].unique())
 base_price = st.sidebar.number_input("Precio base actual ($)", min_value=100.0, value=1000.0, step=50.0)
 elasticity = st.sidebar.slider("Elasticidad estimada", -2.5, -0.5, -1.3, step=0.1)
 
-# 1. Forecasting simple (sin Prophet - funciona en nube)
-st.header("1. Predicción de Ingresos (tendencia simple)")
-daily = df.groupby('Date')['revenue'].sum().reset_index()
-
-# Media móvil para tendencia
+# 1. Forecasting simple
+st.header("1. Predicción de Ingresos")
 daily['trend'] = daily['revenue'].rolling(window=7, center=True).mean()
 
 fig, ax = plt.subplots(figsize=(12, 6))
 ax.plot(daily['Date'], daily['revenue'], label='Ingresos reales', alpha=0.6)
-ax.plot(daily['Date'], daily['trend'], label='Tendencia (media móvil 7 días)', color='red', linewidth=3)
-ax.set_title("Tendencia de Ingresos Diarios")
-ax.set_xlabel("Fecha")
-ax.set_ylabel("Revenue ($)")
+ax.plot(daily['Date'], daily['trend'], label='Tendencia', color='red', linewidth=3)
+ax.set_title("Tendencia de Ingresos Diarios (datos de ejemplo)")
 ax.legend()
 ax.grid(True)
 st.pyplot(fig)
 
-st.write("**Predicción aproximada**: Tendencia creciente con fluctuaciones semanales y impacto de feriados.")
+st.write("**Predicción aproximada**: Tendencia creciente con estacionalidad semanal.")
 
 # 2. Elasticidad
 st.header("2. Elasticidad de Precios")
 cat_df = df[df['category'] == category]
 st.metric("Transacciones en categoría", len(cat_df))
 st.metric("Elasticidad", f"{elasticity:.2f}")
-st.write(f"Un aumento del 10% en precio cambia la demanda en **{elasticity*10:.1f}%**")
 
 # 3. Optimización
 st.header("3. Precio Óptimo Sugerido")
