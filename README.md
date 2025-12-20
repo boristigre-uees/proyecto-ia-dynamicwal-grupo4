@@ -2,6 +2,13 @@
 
 Proyecto final de Maestría en Inteligencia de Negocios y Ciencia de Datos.
 
+## Integrantes – Grupo 4
+
+- Arnaldo Andrés Rojas Jupiter  
+- Andres Asisclo Florencia Toala 
+- Denisse Angie Flores Arellano  
+- Boris Ricardo Tigre Loja
+
 ## Descripción del Proyecto
 DynamicWal es un sistema de inteligencia artificial diseñado para optimizar precios en el sector retail de manera dinámica. Utiliza técnicas avanzadas de machine learning y reinforcement learning para predecir demanda, modelar elasticidad de precios y sugerir precios óptimos que maximicen ingresos.
 
@@ -85,7 +92,3 @@ text## Cómo Ejecutar el Proyecto
 *Streamlit (dashboard)
 *Reinforcement Learning (Q-Learning personalizado)
 
-*Autor
-*Boris Tigre
-*Maestría en Inteligencia de Negocios y Ciencia de Datos
-*¡Proyecto completo y funcional! Quedo a disposición para cualquier consulta o demostración.
