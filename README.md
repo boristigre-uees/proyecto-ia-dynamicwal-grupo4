@@ -1,94 +1,127 @@
-# DynamicWal - Sistema de Optimización de Precios Dinámico para Retail
+# DynamicWal — Sistema de Optimización de Precios Dinámico para Retail
 
-Proyecto final de Maestría en Inteligencia de Negocios y Ciencia de Datos.
+DynamicWal es un **sistema de inteligencia artificial diseñado para optimizar precios en el sector retail** de forma dinámica.  
+El proyecto integra técnicas de **Machine Learning, Forecasting, análisis de elasticidad de precios y simulación**, con el objetivo de mejorar ingresos y apoyar la toma de decisiones estratégicas.
 
-## Integrantes – Grupo 4
+Este repositorio corresponde al **Proyecto Final de materia Inteligencia artificial de la Maestría en Inteligencia de Negocios y Ciencia de Datos**.
+
+---
+
+## 🧠 Descripción General
+
+DynamicWal utiliza datos históricos de ventas para:
+
+- Predecir la **demanda futura** por producto.
+- Estimar la **elasticidad de precios**.
+- Recomendar **precios óptimos** que mejoren métricas clave (revenue, margen).
+- Simular escenarios de precios para medir impacto.
+- Integrarse con sistemas de punto de venta (POS) mediante API.
+
+---
+
+## 👥 Integrantes — Grupo 4
 
 - Arnaldo Andrés Rojas Jupiter  
-- Andres Asisclo Florencia Toala 
+- Andres Asisclo Florencia Toala  
 - Denisse Angie Flores Arellano  
-- Boris Ricardo Tigre Loja
+- Boris Ricardo Tigre Loja  
 
-## Descripción del Proyecto
-DynamicWal es un sistema de inteligencia artificial diseñado para optimizar precios en el sector retail de manera dinámica. Utiliza técnicas avanzadas de machine learning y reinforcement learning para predecir demanda, modelar elasticidad de precios y sugerir precios óptimos que maximicen ingresos.
+---
 
-### Entregables Completos
-- **Motor de optimización de precios**: Reinforcement Learning con Q-Learning
-- **Dashboard de control de precios**: Aplicación interactiva con Streamlit
-- **Simulador de escenarios**: Slider para probar diferentes precios y ver impacto en revenue
-- **API para integración con POS**: API REST con FastAPI
-- **Reportes de impacto financiero**: Métricas de uplift estimado y reducción de stockouts
+## 📁 Estructura del repositorio
 
-## Dashboard Interactivo en Vivo (Streamlit Cloud)
-**Link público del dashboard (accesible desde cualquier dispositivo):**
-https://proyecto-ia-dynamicwal-grupo-9uuhi6novydeuw3erbvfma.streamlit.app/
+proyecto-ia-dynamicwal-grupo4/  
+├── README.md  
+├── requirements.txt  
+├── setup.py  
+├── data/  
+│   ├── raw/              # Datos crudos  
+│   ├── processed/        # Datos limpios para modelado  
+│   └── external/         # Datos externos (opcional)  
+├── src/  
+│   ├── data/             # Preprocesamiento  
+│   ├── features/         # Ingeniería de características  
+│   ├── models/           # Modelos de IA (forecasting, pricing)  
+│   ├── visualization/    # Gráficos y análisis  
+│   └── utils/            # Utilidades generales  
+├── models/  
+│   ├── trained_models/   # Modelos entrenados  
+│   └── model_configs/    # Configuración de modelos  
+├── notebooks/  
+│   ├── exploratory/      # Análisis exploratorio  
+│   └── modeling/         # Entrenamiento de modelos  
 
-## Estructura del Repositorio
-proyecto-ia-dynamicwal-grupo4/
-├── README.md
-├── requirements.txt
-├── setup.py
-├── data/
-│   ├── raw/               # Datos crudos (ej. walmart_sales.csv)
-│   ├── processed/         # Datos limpios generados
-│   └── external/          # Datos externos (opcional)
-├── src/
-│   ├── init.py
-│   ├── data/              # Preprocesamiento
-│   ├── models/            # Modelos (Q-Learning)
-│   ├── features/          # Feature engineering
-│   ├── visualization/    # Funciones de gráficos
-│   └── utils/             # Utilidades
-├── models/
-│   ├── trained_models/    # Modelos entrenados (vacío por ahora)
-│   └── model_configs/     # Configuraciones
-├── notebooks/
-│   ├── exploratory/       # Análisis exploratorio
-│   ├── modeling/          # Modelado y forecasting
-│   └── evaluation/        # Evaluación
-├── api/
-│   ├── app.py             # API principal con FastAPI
-│   ├── routes/            # Endpoints (pricing.py)
-│   └── schemas/           # Modelos de datos Pydantic
-├── dashboard/             # Dashboard interactivo
-│   └── app.py
-├── tests/                 # Pruebas unitarias (estructura)
-├── docs/                  # Documentación
-│   └── propuesta.md       # Propuesta original del proyecto
-└── docker/                # Configuración Docker (estructura)
-text## Cómo Ejecutar el Proyecto
+---
 
-### 1. Clonar el repositorio
-```bash
-*git clone https://github.com/boristigre-uees/proyecto-ia-dynamicwal-grupo4.git
-*cd proyecto-ia-dynamicwal-grupo4
-*2. Instalar dependencias
-*Bashpip install -r requirements.txt
-*3. Ejecutar el Dashboard Interactivo
-*Bashstreamlit run dashboard/app.py
+## 🚀 Tecnologías Utilizadas
 
-*Se abrirá en el navegador
-*Incluye: predicción de ingresos, elasticidad, precio óptimo sugerido, simulador de escenarios y reportes de impacto
+- Python 3.10+
+- Pandas, NumPy
+- Prophet (forecasting de demanda)
+- Scikit-learn / Statsmodels
+- FastAPI (API REST)
+- Streamlit (dashboard interactivo)
+- Reinforcement Learning (Q-Learning)
 
-*4. Ejecutar la API para integración con POS
-*Bashuvicorn api.app:app --reload
+---
 
-*Se abrirá en http://127.0.0.1:8000
-*Documentación interactiva: http://127.0.0.1:8000/docs
-*Endpoint principal: POST /optimize-price (devuelve precio óptimo y uplift)
+## 📦 Instalación
 
-*5. Ejecutar notebooks de análisis
+Clonar el repositorio:
 
-*Abre los notebooks en notebooks/modeling/ con Jupyter o VS Code
-*Incluyen forecasting con Prophet, análisis de elasticidad y experimentos
+    git clone https://github.com/boristigre-uees/proyecto-ia-dynamicwal-grupo4.git
+    cd proyecto-ia-dynamicwal-grupo4
 
-*Tecnologías Utilizadas
+Instalar dependencias:
 
-*Python 3.11+
-*Pandas, NumPy, Matplotlib
-*Prophet (forecasting)
-*Statsmodels (elasticidad)
-*FastAPI + Uvicorn (API)
-*Streamlit (dashboard)
-*Reinforcement Learning (Q-Learning personalizado)
+    pip install -r requirements.txt
 
+---
+
+## ▶️ Ejecución del Proyecto
+
+### Dashboard interactivo
+
+    streamlit run dashboard/app.py
+
+### API de optimización de precios
+
+    uvicorn api.app:app --reload
+
+Acceso a documentación:
+
+    http://127.0.0.1:8000/docs
+
+---
+
+## 📓 Notebooks
+
+Los notebooks incluyen:
+
+- Análisis exploratorio de datos
+- Forecasting de demanda
+- Elasticidad de precios
+- Simulación de escenarios
+- Evaluación de impacto en revenue
+
+Ubicación:
+
+    notebooks/
+
+---
+
+## 📈 Resultados Esperados
+
+- Mejora en ingresos por producto
+- Soporte cuantitativo para decisiones de pricing
+- Simulación de escenarios realistas
+- Arquitectura escalable para integración futura
+
+---
+
+## 📄 Licencia
+
+Proyecto desarrollado con fines **académicos**.  
+No destinado a uso comercial.
+
+---
